@@ -9,8 +9,8 @@
 ```java
 interface PhoneInterface {
     public static final int TIMEOUT = 10000;    // 상수
-    public abstract void sendCall();                      // 추상 메소드
-    public abstract void receiveCall();                  // 추상 메소드
+    public abstract void sendCall();            // 추상 메소드
+    public abstract void receiveCall();         // 추상 메소드
     public default void printLogo(){            // default 메소드
         System.out.println("** Phone **");
     }
@@ -69,12 +69,11 @@ public static void main(String args[]){
     Shape shape2 = new Circle();    // ok
 }
 ```
-
+___
 ### 추상 클래스 vs 인터페이스
 ||추상 클래스 (abstract class) |인터페이스 (interface)|
 |---|---|---|
-|공통점|인스터스화 불가능. 객체의 추상화||
+|공통점|인스터스화 불가능. <br>객체의 추상화.|인스터스화 불가능. <br>객체의 추상화.|
 |상속|단일 상속|`다중 상속`|
-|**목적**|공통적인 기능을 하는 객체의 추상화에 사용. 슈퍼클래스의 멤버 변수와 메소드를 물려받고, 추상 메소드를 `고유한 기능으로 확장`|서로 관련없는 객체들의 추상화에 사용. 인터페이스의 추상 메소드를 항상 `동일한 기능`으로 구현|
+|**목적**|공통적인 기능을 하는 객체의 추상화에 사용.<br> 슈퍼클래스의 멤버 변수와 메소드를 물려받고,<br>추상 메소드를 `고유한 기능으로 확장`|서로 관련없는 객체들의 추상화에 사용.<br> 인터페이스의 추상 메소드를 항상 `동일한 기능`으로 구현|
 |키워드|abstract, extends|interface, implement|
-
