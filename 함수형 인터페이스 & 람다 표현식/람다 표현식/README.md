@@ -58,7 +58,7 @@ private void run() {
     IntConsumer integerConsumer = new IntConsumer() {
         @Override
         public void accept(int baseNumber) {
-            System.out.println(baseNumber); // 쉐도윙, 11 출력
+            System.out.println(baseNumber); // 쉐도윙, 매개 변수 값 출력
         }
     };
 
