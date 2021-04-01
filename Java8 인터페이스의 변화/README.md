@@ -42,7 +42,6 @@ public interface DefaultFoo {
 
 ## 스태틱 메소드 (Static Methods)
 - 해당 `타입 관련 헬퍼(helper) 메소드` 또는 `유틸리티 메소드`를 제공하고자 할 때, 인터페이스에 스태틱 메소드를 추가할 수 있다.
-    > ex) Collections.sort()
 
 ```java
 public class Foo implements DefaultFoo{
@@ -78,3 +77,48 @@ public class Foo implements DefaultFoo{
     }
 }
 ```
+
+## 자바 8 API의 몇 가지 기본 메소드와 스태틱 메소드
+- `Iterable` 기본 메소드
+    - `forEach()`
+    ```java
+    // 람다
+    names.forEach(s ->{
+        System.out.println(s);
+    });
+    // 메소드 레퍼런스
+    names.forEach(System.out::println);
+    ```
+    - `spliterator()`
+    ```java
+    Spliterator<String> spliterator = names.spliterator();
+    Spliterator<String> spliterator1 = spliterator.trySplit();  // trySplit() : 반으로 나누는 메소드
+    while(spliterator.tryAdvance(System.out::println));
+    while(spliterator1.tryAdvance(System.out::println));
+    ```
+- `Collection` 기본 메소드
+    - `stream()` / `parallelStream()`
+    ```java
+    long l = names.stream().map(String::toUpperCase)
+                .filter(s -> s.startsWith("S"))
+                .count();
+    System.out.println(l);
+    ```
+    - `removeIf(Predicate)`
+    ```java
+    names.removeIf(s->s.startsWith("s"));
+    names.forEach(System.out::println);
+    ```
+    - `spliterator()`
+- `Comparator` 기본 메소드 및 스태틱 메소드
+    - `reversed()`
+    ```java
+    Comparator<String> compareToIgnoreCase = String::compareToIgnoreCase;;
+    names.sort(compareToIgnoreCase.reversed());
+    names.forEach(System.out::println);
+    ```
+    - `thenComparing()`
+    - `static reverseOrder() / naturalOrder()`
+    - `static nullsFirst() / nullsLast()`
+    - `static comparing()`
+- etc.
