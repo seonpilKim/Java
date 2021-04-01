@@ -42,6 +42,7 @@ public interface DefaultFoo {
 
 ## 스태틱 메소드 (Static Methods)
 - 해당 `타입 관련 헬퍼(helper) 메소드` 또는 `유틸리티 메소드`를 제공하고자 할 때, 인터페이스에 스태틱 메소드를 추가할 수 있다.
+    > ex) Collections.sort()
 
 ```java
 public class Foo implements DefaultFoo{
