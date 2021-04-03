@@ -56,3 +56,73 @@ collect.forEach(System.out::println);   // 대문자로 변환된 결과 출력
 ### 종료 연산(terminal operation)
 - `Stream을 return하지 않는다.`
 > ex) collect, allMatch, count, forEach, min, max, ...
+
+## Stream API
+
+### 걸러내기
+- `Filter(Predicate)`
+    > ex) 이름이 3글자 이상인 데이터만 새로운 스트림으로 걸러내기
+    ```java
+    springClaases.stream()
+            .filter(oc -> oc.getTitle()startsWith("spring"))
+            .forEach(oc -> System.out.println(oc.getId()));
+    ```
+
+### 변경하기
+- `Map(Function)` or `FlatMap(Function)`
+    > ex) 각각의 Post instance에서 String title만 새로운 스트림으로 변경하기
+    > ex) List<Stream<String>>을 String의 Stream으로 변경하기
+    ```java
+    Events.stream()
+            .flatMap(list -> list.stream())    // 각list의 classes를 flatting 시킨 stream으로 만듦
+            //.flatMap(Collection::stream) 메소드 레퍼런스
+            .forEach(oc -> System.out.println(oc.getId()));
+    ```
+
+### 생성하기
+- `generate(Supplier)` or `Iterate(T seed, UnaryOperator)`
+    > ex) 10부터 1씩 증가하는 무제한 숫자 스트림 생성하기
+    > ex) 랜덤 int 무제한 스트림 생성하기
+    ```java
+    Stream.iterate(10, i -> i + 1)
+            .forEach(System.out::println);
+    ```
+
+### 제한하기
+- `limit(long)` or `skip(long)`
+    > ex) 최대 5개의 요소가 담긴 스트림을 리턴하기
+    > ex) 앞에서 3개를 뺀 나머지 스트림을 리턴하기
+    ```java
+    Stream.iterate(10, i -> i + 1)
+            .skip(10)
+            .limit(10)
+            .forEach(System.out::println);
+    ```
+
+### 스트림에 있는 데이터가 특정 조건을 만족하는지 확인
+- `anyMatch()`, `allMatch()`, `nonMatch()`
+    > ex) k로 시작하는 문자열이 있는지 확인하기 (true or false를 return)
+    > ex) 스트림에 있는 모든 값이 10보다 작은지 확인하기
+    ```java
+    boolean test = javaClasses.stream().anyMatch(oc -> oc.getTitle().contains("Test")); // boolean이 return되므로 바로 종료.
+    System.out.println(test);
+    ```
+
+### 개수 세기
+- `count()`
+    > ex) 10보다 큰 수의 개수를 세기
+    ```java
+    long count = springClaases.stream()
+            .filter(oc -> !oc.isClosed())
+            .count();
+    ```
+### 스트림을 하나의 데이터로 뭉치기
+- `reduce(identity, BiFunction)`, `collect()`, `sum()`, `max()`
+    > ex) 모든 숫자 합 구하기
+    > ex) 모든 데이터를 하나의 List 또는 Set에 옮겨 담기
+    ```java
+    List<String> spring1 = springClaases.stream()
+            .map(oc -> oc.getTitle())
+            .filter(t -> t.contains("spring"))
+            .collect(Collectors.toList());
+    ```            
