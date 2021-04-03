@@ -50,7 +50,7 @@ collect.forEach(System.out::println);   // 대문자로 변환된 결과 출력
 - `Stream을 return한다.`
 - 중간 연산은 근본적으로 `lazy`하다. (최종 연산을 할 때, 중간 연산이 같이 실행된다.)
 - Stateless / Stateful operation으로 더 상세하게 구분할 수도 있다.
-    - 대부분은 Stateless이지만, distinct나 rted처럼 이전의 소스 데이터를 참조해야하는 operation은 Stateful operation이다.
+    - 대부분은 Stateless이지만, distinct나 sorted처럼 이전의 소스 데이터를 참조해야하는 operation은 Stateful operation이다.
 > ex) filter, map, limit, skip, sorted, ...
 
 ### 종료 연산(terminal operation)
@@ -74,7 +74,7 @@ collect.forEach(System.out::println);   // 대문자로 변환된 결과 출력
     > ex) List<Stream<String>>을 String의 Stream으로 변경하기
     ```java
     Events.stream()
-            .flatMap(list -> list.stream())    // 각list의 classes를 flatting 시킨 stream으로 만듦
+            .flatMap(list -> list.stream())    // 각 list의 classes를 flatting 시킨 stream으로 만듦
             //.flatMap(Collection::stream) 메소드 레퍼런스
             .forEach(oc -> System.out.println(oc.getId()));
     ```
