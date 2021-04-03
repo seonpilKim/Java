@@ -50,7 +50,7 @@ collect.forEach(System.out::println);   // 대문자로 변환된 결과 출력
 - `Stream을 return한다.`
 - 중간 연산은 근본적으로 `lazy`하다. (최종 연산을 할 때, 중간 연산이 같이 실행된다.)
 - Stateless / Stateful operation으로 더 상세하게 구분할 수도 있다.
-    - 대부분은 Stateless이지만, distinct나 osrted처럼 이전의 소스 데이터를 참조해야하는 operation은 Stateful operation이다.
+    - 대부분은 Stateless이지만, distinct나 rted처럼 이전의 소스 데이터를 참조해야하는 operation은 Stateful operation이다.
 > ex) filter, map, limit, skip, sorted, ...
 
 ### 종료 연산(terminal operation)
