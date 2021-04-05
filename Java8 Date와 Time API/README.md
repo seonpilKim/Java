@@ -192,10 +192,10 @@ LocalDate date3 = LocalDate.parse("04/05/2021", DateTimeFormatter.ofPattern("MM/
     // Recent -> Legacy : GregorianCalendar으로 변환
     GregorianCalendar from = GregorianCalendar.from(dateTime);
 
-    // Recent -> Leagacy : ZoneId로 변환
+    // Legacy -> Recent : ZoneId로 변환
     ZoneId zoneId = TimeZone.getTimeZone("PST").toZoneId(); 
     System.out.println(zoneId); // America/Los_Angeles
-    // Legacy -> Recent : TimeZone으로 변환
+    // Recent -> Leagacy : TimeZone으로 변환
     TimeZone timeZone = TimeZone.getTimeZone(zoneId);
     System.out.println(timeZone.getId()); // America/Los_Angeles
     ```
