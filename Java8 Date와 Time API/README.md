@@ -31,16 +31,16 @@ System.out.println(after3Seconds); // Mon Apr 05 16:06:21 KST 2021
 
 ### 디자인 철학
 1. `Clear`
-    - Date-Time API의 메소드들은 명확하며, 결과를 예측하기쉽다.
-        > ex) Date-Time 메소드에 null을 parameter로 넘기면,NPE를 발생시킨다.
+    - Date-Time API의 메소드들은 명확하며, 결과를 예측하기 쉽다.
+        > ex) Date-Time 메소드에 null을 parameter로 넘기면, NPE를 발생시킨다.
 2. `Fluent`
-    - Date-Time API는 프로그래머가 읽기 쉬운 interface를제공한다.
+    - Date-Time API는 프로그래머가 읽기 쉬운 interface를 제공한다.
     ```java
     LocalDate today = LocalDate.now();
     LocalDate payday = today.with(TemporalAdjusterslastDayOfMonth()).minusDays(2);
     ```
 3. `Immutable`
-    - Date-Time API의 classes는 `immutable(불변의)` 객체를생성하며, 이는 `thread-safe`를 의미한다.
+    - Date-Time API의 classes는 `immutable(불변의)` 객체를 생성하며, 이는 `thread-safe`를 의미한다.
     ```java
     LocalDate dateOfBirth = LocalDate.of(1997, Month.MARCH, 6);
     LocalDate firstBirthday = dateOfBirth.plusYears(1);
@@ -56,7 +56,6 @@ System.out.println(after3Seconds); // Mon Apr 05 16:06:21 KST 2021
     - `Machine time`은 `EPOCK(1970년 1월 1일 0시 0분 0초 UTC)`부터 현재까지의 타임스탬프를 표현한다.
     - `Humam time`은 우리가 흔히 사용하는 연, 월, 일, 시, 분, 초 등을 표현한다.
 - 타임스탬프는 `Instant`를 사용한다.
-    -
     ```java
     Instant now = Instant.now(); // 현재 UTC를 출력한다.
     System.out.println(now); // 2021-04-05T12:33:24.346389300Z
@@ -79,8 +78,8 @@ System.out.println(after3Seconds); // Mon Apr 05 16:06:21 KST 2021
     boolean leapYear = date.isLeapYear(); // 윤년 여부
     ```
     - `get()` 메소드에 `TemporalField`를 전달하여 정보를 얻을 수도  있다.
-        - `TemporalField` 시간 관련 객체에서 어떤 필드의 값에 접근할    지 정의하는 interface이다.
-        - `enum` 타입인 `ChronoField`는 `TemporalField` interface를     정의한다.
+        - `TemporalField` 시간 관련 객체에서 어떤 필드의 값에 접근할지를 정의하는 interface이다.
+        - `enum` 타입인 `ChronoField`는 `TemporalField` interface를 정의한다.
         ```java
         int year = today.get(ChronoField.YEAR);
         int month = today.get(ChronoField.MONTH_OF_YEAR);
@@ -132,7 +131,7 @@ System.out.println(after3Seconds); // Mon Apr 05 16:06:21 KST 2021
 
     // 차이가 나는 전체 일 수가 아니다.
     // 차이가 30일이 넘어가면 다시 1부터 시작해서 계산한다.
-    // getMonths()와 getDays()를 혼용하거나, ChronoUnit.DAYS.between    (now, future)을 사용하면 차이가 나는 전체 일 수를 알 수 있다.
+    // getMonths()와 getDays()를 혼용하거나, ChronoUnit.DAYS.between(now, future)을 사용하면 차이가 나는 전체 일 수를 알 수 있다.
     Period period = Period.between(today, thisYearBirthday);
     // 상동
     Period until = today.until(thisYearBirthday);
